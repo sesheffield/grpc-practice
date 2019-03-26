@@ -714,7 +714,7 @@ type ToDoServiceServer interface {
 	// Read todo task
 	Read(context.Context, *ReadRequest) (*ReadResponse, error)
 	// Update todo task
-	Update(context.Context, *UpdateResponse) (*UpdateResponse, error)
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	// Delete todo task
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	// Read all todo tasks
@@ -782,7 +782,7 @@ func _ToDoService_Read_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _ToDoService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateResponse)
+	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -794,7 +794,7 @@ func _ToDoService_Update_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: "/v1.ToDoService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ToDoServiceServer).Update(ctx, req.(*UpdateResponse))
+		return srv.(ToDoServiceServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
